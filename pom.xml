@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.yinwu</groupId>
+  <artifactId>velocity-lastserver</artifactId>
+  <version>1.1.0</version>
+  <packaging>jar</packaging>
+  <name>YinwuLastServer</name>
+  <description>记住玩家上次所在的子服，进服时直接送回；不可用时回退默认大厅</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>17</maven.compiler.release>
+    <!--
+      注意：Maven 本身必须跑在 JDK 25 上。velocity-4.2.0-30.jar 里的类都是
+      class file 69（Java 25），JDK 17/21 的 javac 连读都读不了它；
+      maven.compiler.release 仍保持 17，最终产物是 Java 17 字节码。
+
+      推荐做法（版本与线上完全一致、零猜测）：先把代理 jar 装进本地仓库
+        mvn install:install-file -Dfile="..\velocity\velocity-4.2.0-30.jar" ^
+            -DgroupId=com.velocitypowered -DartifactId=velocity-api ^
+            -Dversion=4.2.0-local -Dpackaging=jar
+      然后把下面这行改成 4.2.0-local。
+      走官方仓库的话，可用版本以 repo.papermc.io 上 com/velocitypowered/velocity-api 的
+      maven-metadata.xml 为准（例如 3.4.0 一类正式版，或 4.x）。
+    -->
+    <velocity.version>3.4.0</velocity.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>papermc</id>
+      <url>https://repo.papermc.io/repository/maven-public/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.velocitypowered</groupId>
+      <artifactId>velocity-api</artifactId>
+      <version>${velocity.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>velocity-lastserver-${project.version}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.1</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
