@@ -1,0 +1,10 @@
+{
+  "id": "yinwu-lastserver",
+  "name": "YinwuLastServer",
+  "version": "1.1.0",
+  "description": "记住玩家上次所在的子服，进服时直接送回；目标子服不可用时回退到默认大厅，转服失败时玩家留在原处不被踢出。",
+  "authors": [
+    "Yinwu"
+  ],
+  "main": "io.yinwu.lastserver.LastServerPlugin"
+}
