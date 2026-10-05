@@ -4,17 +4,20 @@ Velocity 代理插件：**记住玩家上次所在的子服，进服时直接送
 
 零第三方依赖：只用 Velocity 代理 API。运行时不解析任何游戏数据包，因此与玩家客户端版本（26.1 / 26.2 / 26.3 …）无关。
 
-## 当前状态（2026-09-27）
+## 当前状态（2026-10-05）
 
 | 项 | 值 |
 |---|---|
-| 线上版本 | `1.0.0`（`velocity\plugins\velocity-lastserver-1.0.0.jar`，正在运行） |
-| 新版本 | `1.1.0` 已构建，见 `velocity-lastserver-1.1.0.jar` |
+| 仓库内版本 | `1.1.0`（`velocity-lastserver-1.1.0.jar`，8,572 字节） |
+| `velocity-plugin.json` 版本 | `1.1.0` |
+| 线上部署版本 | `1.0.0`（`velocity\plugins\velocity-lastserver-1.0.0.jar`，据 2026-09-27 记录仍在运行） |
 | 1.1.0 变更 | 修掉"子服重启那十几秒里 /server 过去 → **被踢出整个代理**"的漏洞（见第 10 节） |
 | 安装 1.1.0 | ⏳ 需要先停代理（运行中的代理锁住旧 jar），换 jar 后重启 |
 | 1.1.0 SHA-256 | `69009C9DAB82797C6BC85F3BA4AE3AE4D6C3CD1BDE30D2B7BB94EE0B85FE0255`（8,572 字节） |
 | 1.0.0 SHA-256 | `589C6F3B1F8D78C19F20829E3F51B995070E031D90BAD221FFC4D16297119972`（7,462 字节） |
 | 加载测试 | ✅ 1.0.0 已在隔离实例实测通过；1.1.0 编译+字节码核对通过（用到 `KickedFromServerEvent.Notify`） |
+
+> 本仓库**只含 1.1.0 的 jar 与源码**；1.0.0 的 jar 未随仓库分发，上面的 1.0.0 SHA-256 仅作换装前核对用。
 
 ---
 
@@ -39,6 +42,8 @@ Velocity 代理插件：**记住玩家上次所在的子服，进服时直接送
 velocity-lastserver/
 ├─ build-javac.bat                  # 一键构建（需要 JDK 25 + 代理 jar，无需 Maven/联网）
 ├─ pom.xml                          # 可选：Maven 构建（Maven 也必须跑在 JDK 25 上）
+├─ LICENSE                          # LGPL-3.0
+├─ .gitignore
 ├─ README.md
 └─ src/main/
    ├─ java/io/yinwu/lastserver/LastServerPlugin.java
