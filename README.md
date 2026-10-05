@@ -186,3 +186,9 @@ start.bat
 ```
 
 **验收**：起服后看 `latest.log` 的 `[lastserver] 已启用：…转服失败留在原处=true…`；然后在某个子服重启的那十几秒里用 `/server <该子服>`，应看到聊天栏提示"⚠ 无法连接到 xxx（可能正在重启），你仍留在 yyy"，并且**不掉线**。
+
+---
+
+## License | 许可证
+
+LGPL-3.0 —— 见 [LICENSE](LICENSE)。
